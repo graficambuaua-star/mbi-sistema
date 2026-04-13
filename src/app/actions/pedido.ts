@@ -39,7 +39,7 @@ export async function criarPedido(formData: FormData) {
   }
 }
 
-export async function deletarPedido(id: string) {
+export async function deletarPedido(id: string, _formData?: any) {
   try {
     await prisma.pedido.delete({
       where: { id }
@@ -67,7 +67,7 @@ export async function listarPedidos(status: string) {
   })
 }
 
-export async function atualizarStatusPedido(pedidoId: string, novoStatus: string, justificativa?: string) {
+export async function atualizarStatusPedido(pedidoId: string, novoStatus: string, justificativa?: any) {
   try {
     const pedidoAntigo = await prisma.pedido.findUnique({ where: { id: pedidoId } })
     if (!pedidoAntigo) return { error: 'Pedido não encontrado.' }
